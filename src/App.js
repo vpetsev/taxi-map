@@ -9,7 +9,7 @@ import { renderLayers } from './deckgl-layers';
 import Charts from './charts';
 
 // Set your mapbox access token here
-const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoidnBldHNldjk2IiwiYSI6ImNrYnRzMTBxejAwZnYycXA3bzZ0OXFpdHUifQ.Dv0v0YoPuv-SNDoHUVoMmw";
+const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN || "";
 
       // Initial viewport settings
 const INITIAL_VIEW_STATE =
@@ -166,7 +166,7 @@ export default class App extends Component {
           onWebGLInitialized={this._onWebGLInitialize}
           layers={renderLayers({
             data: this.state.points,
-            hour: this.state.highlightedHour || this.state.selectedHour,
+            hour: this.state.highlightedHour == null ? this.state.selectedHour : this.state.highlightedHour,
             onHover: (hover) => this._onHover(hover),
             settings: this.state.settings,
           })}
@@ -174,10 +174,10 @@ export default class App extends Component {
           viewState={viewState}
           controller={controller}
         >
-          <StaticMap
+          {MAPBOX_ACCESS_TOKEN && <StaticMap
             mapStyle={this.state.style}
             mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-          />
+          />}
         </DeckGL>
         <Charts
           {...this.state}
