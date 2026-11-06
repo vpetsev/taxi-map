@@ -9,7 +9,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-vis": "^1.11.7"
+    "react-vis": "^1.11.7",
+    "deck.gl": "8.1.0",
+    "react-map-gl": "5.2.5",
+    "@deck.gl/layers": "8.1.0",
+    "@deck.gl/aggregation-layers": "8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
